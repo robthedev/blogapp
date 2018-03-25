@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
+import { Link } from 'react-router-dom';
 import { fetchPost} from "../actions";
 
 class PostsShow extends Component {
@@ -10,11 +11,16 @@ class PostsShow extends Component {
     render() {
         const { post } = this.props;
 
-    return(
+        if (!post) {
+            return <div>loading...</div>;
+        }
+//216163
+    return (
             <div>
+                <Link to="/">Back to home</Link>
                 <h3>{post.title}</h3>
-                <h4>CAr: {post.categories}</h4>
-                <h6>{post.content}</h6>
+                <h4>Cate: {post.categories}</h4>
+                <p>{post.content}</p>
             </div>
         );
     }
